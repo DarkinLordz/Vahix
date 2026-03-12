@@ -21,6 +21,10 @@ void clear(void) {
     cursor = 0;
 }
 
+void new_line(void) {
+    cursor += 80 - (cursor % 80);
+}
+
 void kernel_main(void) {
     for (;;) {
         __asm__ volatile ("hlt");
