@@ -21,7 +21,6 @@ void execute_command(char *command){
         while(1) {
             __asm__ volatile ("hlt");
         }
-}
     }
 }
 
