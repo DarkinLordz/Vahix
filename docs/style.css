@@ -1,0 +1,46 @@
+body {
+    background-color: #0d0d0d; /* I'll try to make this as hacky looking as possible */
+    color: #00ff41; /* Classic green */
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #00ff41;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+a {
+    color: #00bfff;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: #00bfff;
+    color: #0d0d0d;
+}
+
+hr {
+    border: 0;
+    border-top: 1px dashed #444;
+    margin: 20px 0;
+}
+
+ul {
+    list-style-type: "> "; /* Looks very good honestly */
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+strong {
+    color: #ffcc00;
+}

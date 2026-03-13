@@ -1,0 +1,1 @@
+console.log("Hello, world!"); // For absolutely NO reason LMAO
