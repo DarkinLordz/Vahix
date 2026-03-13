@@ -1,13 +1,13 @@
 #include <stdint.h>
 #include <stddef.h>
-#include <string.h>
+#include "string.h"
 #include "keyboard.h"
 #include "vga.h"
 
 void execute_command(char *command){
-    if (strcmp(*command, "help")) {
+    if (strcmp(command, "help") == 0) {
         print_string("Commands: help, clear\n");
-    } else if (strcmp(*command, "clear")){
+    } else if (strcmp(command, "clear") == 0){
         clear();
     }
 }
