@@ -28,6 +28,8 @@ void execute_command(char *command){
         vendor[12] = '\0';
 
         print_string(vendor);
+    } else if (strcmp(command, "whoami") == 0) {
+        print_string("root");
     }
 }
 
