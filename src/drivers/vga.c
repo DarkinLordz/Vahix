@@ -1,15 +1,15 @@
 #include <drivers/vga.h>
 
 static volatile uint16_t *const VGA_BUFFER = (uint16_t *)0xB8000;
-static const uint8_t VGA_COLOR = 0x0F;
+static const uint8_t VGA_COLOR = 0x05;
 size_t cursor = 0;
-
-void new_line(void) {
-    cursor += 80 - (cursor % 80);
-}
 
 void move_cursor(int direction) {
     cursor += direction;
+}
+
+void new_line(void) {
+    move_cursor(80 - (cursor % 80));
 }
 
 void clear(void) {
@@ -26,13 +26,14 @@ void print_character(const char character) {
     }
     if (character == '\b') {
         if (cursor > 0) {
-            cursor--;
+            move_cursor(-1);
             VGA_BUFFER[cursor] = (uint16_t)' ' | ((uint16_t)VGA_COLOR << 8);
         }
     } else if (character == '\n') {
         new_line();
     } else {
-        VGA_BUFFER[cursor++] = (uint16_t)character | ((uint16_t)VGA_COLOR << 8);
+        VGA_BUFFER[cursor] = (uint16_t)character | ((uint16_t)VGA_COLOR << 8);
+        move_cursor(1);
     }
 }
 
