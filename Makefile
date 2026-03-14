@@ -1,7 +1,7 @@
 CC      := i686-elf-gcc
 LD      := i686-elf-gcc
 AS      := i686-elf-gcc
-CFLAGS  := -std=gnu99 -ffreestanding -O2 -Wall -Wextra -MMD -MP -Isrc/lib
+CFLAGS  := -std=gnu99 -ffreestanding -O2 -Wall -Wextra -MMD -MP -Iinclude
 ASFLAGS := -ffreestanding
 LDFLAGS := -T linker.ld -ffreestanding -O2 -nostdlib
 

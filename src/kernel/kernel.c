@@ -1,8 +1,8 @@
 #include <stddef.h>
 #include <stdint.h>
-#include "keyboard.h"
-#include "shell.h"
-#include "vga.h"
+#include <drivers/keyboard.h>
+#include <kernel/shell.h>
+#include <drivers/vga.h>
 
 void kernel_main(void) {
     clear();

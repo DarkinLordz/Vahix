@@ -1,8 +1,9 @@
 #include <stdint.h>
 #include <stddef.h>
-#include "string.h"
-#include "keyboard.h"
-#include "vga.h"
+#include <kernel/shell.h>
+#include <lib/string.h>
+#include <drivers/keyboard.h>
+#include <drivers/vga.h>
 
 void execute_command(char *command){
     if (strcmp(command, "help") == 0) {
