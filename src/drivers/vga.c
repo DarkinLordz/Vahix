@@ -1,7 +1,7 @@
 #include <drivers/vga.h>
 
 static volatile uint16_t *const VGA_BUFFER = (uint16_t *)0xB8000;
-static const uint8_t VGA_COLOR = 0x05;
+static const uint8_t VGA_COLOR = 0x0F;
 size_t cursor = 0;
 
 void move_cursor(int direction) {
