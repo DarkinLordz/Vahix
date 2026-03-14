@@ -7,9 +7,14 @@
 
 void execute_command(char *command){
     if (strcmp(command, "help") == 0) {
-        print_string("Commands: help, clear\n");
+        print_string("Commands: help, clear, echo\n");
     } else if (strcmp(command, "clear") == 0){
         clear();
+    } else if (strncmp(command, "echo", 4) == 0){
+        if (strlen(command) > 4){
+            print_string(command + 5);
+            print_character('\n');
+        }
     }
 }
 
