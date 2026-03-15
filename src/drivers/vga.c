@@ -18,11 +18,11 @@ void move_cursor(int direction) {
 }
 
 void new_line(void) {
-    move_cursor(80 - (cursor % 80));
+    move_cursor(VGA_WIDTH - (cursor % VGA_WIDTH));
 }
 
 void clear(void) {
-    for (size_t i = 0; i < 80 * 25; i++) {
+    for (size_t i = 0; i < VGA_WIDTH * VGA_HEIGHT; i++) {
         VGA_BUFFER[i] = (uint16_t)' ' | ((uint16_t)VGA_COLOR << 8);
     }
     cursor = 0;
@@ -30,7 +30,7 @@ void clear(void) {
 }
 
 void print_character(const char character) {
-    if (cursor >= 80 * 25) {
+    if (cursor >= VGA_WIDTH * VGA_HEIGHT) {
         clear();
         cursor = 0;
     }
