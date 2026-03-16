@@ -41,6 +41,20 @@ void execute_command(char *command){
             if (strcmp(color, "brown") == 0){set_color(0x06, 0x00);}
             if (strcmp(color, "white") == 0){set_color(0x0F, 0x00);}
         }
+    } else if (strncmp(command, "peek ", 5) == 0) {
+        uint32_t addr = string_to_hex(command + 5);
+        uint8_t *ptr = (uint8_t*)addr;
+        uint8_t value = *ptr;
+        print_hex(value);
+    } else if (strncmp(command, "dump ", 5) == 0) {
+        uint32_t addr = string_to_hex(command + 5);
+        uint8_t *ptr = (uint8_t*)addr;
+
+        for (int i = 0; i < 16; i++) {
+            print_hex_byte(ptr[i]);
+            print_character(' ');
+            if (i == 7) print_string("| ");
+        }
     }
 }
 
