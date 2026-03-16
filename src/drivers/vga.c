@@ -32,7 +32,7 @@ void scroll(void) {
     update_hardware_cursor();
 }
 
-void vga_set_color(uint8_t fg, uint8_t bg) {
+void set_color(uint8_t fg, uint8_t bg) {
     VGA_COLOR = fg | (bg << 4);
 }
 

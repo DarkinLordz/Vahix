@@ -8,7 +8,6 @@ void execute_command(char *command){
     } else if (strncmp(command, "echo", 4) == 0){
         if (strlen(command) > 4){
             print_string(command + 5);
-            print_character('\n');
         }
     } else if (strcmp(command, "halt") == 0){
         while (1){
@@ -30,6 +29,18 @@ void execute_command(char *command){
         print_string(vendor);
     } else if (strcmp(command, "whoami") == 0) {
         print_string("root");
+    } else if (strncmp(command, "color", 5) == 0){
+        if (strlen(command) > 5){
+            char *color = command + 6;
+            if (strcmp(color, "black") == 0){set_color(0x00, 0x00);}
+            if (strcmp(color, "blue") == 0){set_color(0x01, 0x00);}
+            if (strcmp(color, "green") == 0){set_color(0x02, 0x00);}
+            if (strcmp(color, "cyan") == 0){set_color(0x03, 0x00);}
+            if (strcmp(color, "red") == 0){set_color(0x04, 0x00);}
+            if (strcmp(color, "magenta") == 0){set_color(0x05, 0x00);}
+            if (strcmp(color, "brown") == 0){set_color(0x06, 0x00);}
+            if (strcmp(color, "white") == 0){set_color(0x0F, 0x00);}
+        }
     }
 }
 
@@ -38,7 +49,9 @@ void shell(void){
     char input_buffer[64];
     int index = 0;
     char c;
-    print_string("\n# ");
+    print_string("Welcome to Vahix Shell!\n");
+    print_string("To see available commands, type 'help'\n");
+    print_string("# ");
     while (running){
         if (keyboard_poll_char(&c)){
             if (c == '\n'){
