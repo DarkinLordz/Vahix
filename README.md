@@ -1,6 +1,8 @@
 # Vahix
 
-Vahix is an experimental kernel.
+![Example](docs/image.png)
+
+## Vahix is an experimental kernel.
 
 ## Layout
 - `src/arch/i386` — boot code and architecture-specific startup
