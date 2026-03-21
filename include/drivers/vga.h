@@ -3,6 +3,8 @@
 #include <stdint.h>
 #include <stddef.h>
 
+#include "kernel/io.h"
+
 void new_line(void);
 void move_cursor(int direction);
 void clear(void);
