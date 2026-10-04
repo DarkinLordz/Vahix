@@ -139,3 +139,10 @@ void push(String *str, char c)
 	str->data[str->length] = c;
 	str->length++;
 }
+
+void push_str(String *str, const char *s)
+{
+	for (size_t i = 0; s[i] != '\0'; i++) {
+		push(str, s[i]);
+	}
+}
