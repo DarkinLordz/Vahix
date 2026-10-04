@@ -110,3 +110,22 @@ int atoi(const char *nptr)
 
 	return value;
 }
+
+void grow_string(String *str)
+{
+	size_t new_capacity = (str->capacity == 0) ? 8 : str->capacity * 2;
+	uint8_t *new_data = alloc(&allocator, new_capacity);
+
+	if (new_data == NULL) {
+		return; // i might handle this better later
+	}
+
+	if (str->length > 0) {
+		for (size_t i = 0; i < str->length; i++) {
+			new_data[i] = str->data[i];
+		}
+	}
+
+	str->data = (char *)new_data;
+	str->capacity = new_capacity;
+}
