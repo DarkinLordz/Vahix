@@ -132,11 +132,12 @@ void grow_string(String *str)
 
 void push(String *str, char c)
 {
-	if (str->length == str->capacity) {
+	if (str->length + 1 >= str->capacity) {
 		grow_string(str);
 	}
 
 	str->data[str->length] = c;
+	str->data[str->length + 1] = '\0';
 	str->length++;
 }
 
@@ -145,4 +146,13 @@ void push_str(String *str, const char *s)
 	for (size_t i = 0; s[i] != '\0'; i++) {
 		push(str, s[i]);
 	}
+}
+
+String new_string(void)
+{
+	String str;
+	str.data = NULL;
+	str.length = 0;
+	str.capacity = 0;
+	return str;
 }
