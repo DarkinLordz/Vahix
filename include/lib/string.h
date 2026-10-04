@@ -21,5 +21,6 @@ void itoa(int n, char *str);
 void reverse(char *str, int length);
 int atoi(const char *nptr);
 void grow_string(String *str);
+void push(String *str, char c);
 
 #endif

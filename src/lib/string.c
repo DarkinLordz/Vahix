@@ -129,3 +129,13 @@ void grow_string(String *str)
 	str->data = (char *)new_data;
 	str->capacity = new_capacity;
 }
+
+void push(String *str, char c)
+{
+	if (str->length == str->capacity) {
+		grow_string(str);
+	}
+
+	str->data[str->length] = c;
+	str->length++;
+}
