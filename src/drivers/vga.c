@@ -91,28 +91,6 @@ void clear(void)
 	cursor_pos = 0;
 	update_hardware_cursor();
 }
-
-void print_character(const char character)
-{
-	if (cursor_pos >= VGA_WIDTH * VGA_HEIGHT) {
-		scroll();
-	}
-
-	if (character == '\b') {
-		if (cursor_pos > 0) {
-			move_cursor(-1);
-			write_cell(cursor_pos / VGA_WIDTH,
-				   cursor_pos % VGA_WIDTH, ' ', vga_color);
-		}
-	} else if (character == '\n') {
-		new_line();
-	} else {
-		write_cell(cursor_pos / VGA_WIDTH, cursor_pos % VGA_WIDTH,
-			   character, vga_color);
-		move_cursor(1);
-	}
-}
-
 void change_cursor(const char cursor_shape)
 {
 	char cursor_start;
@@ -126,4 +104,7 @@ void change_cursor(const char cursor_shape)
 
 	outb(0x3d4, 0x0b);
 	outb(0x3d5, (inb(0x3d5) & 0xe0) | cursor_end);
+}
+size_t get_cursor_pos(void) {
+	return cursor_pos;
 }

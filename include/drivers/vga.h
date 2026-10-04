@@ -17,12 +17,12 @@ void new_line(void);
 void move_cursor(int direction);
 void set_cursor(int location);
 void clear(void);
-void print_character(const char character);
 void scroll(void);
 void set_color(uint8_t fg, uint8_t bg);
 uint8_t get_color(void);
 void change_cursor(const char cursor_shape);
 void blink(bool state);
 void write_cell(size_t row, size_t col, char character, uint8_t color);
+size_t get_cursor_pos(void);
 
 #endif /* VAHIX_VGA_H */
