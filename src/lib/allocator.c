@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
 /* Copyright (C) 2026 Vahid Khalafov */
 
-#include "allocator/allocator.h"
+#include "lib/allocator.h"
 
 void bump_init(BumpAllocator *allocator, uint32_t heap_start, uint32_t heap_end) {
     allocator->heap_start = heap_start;
