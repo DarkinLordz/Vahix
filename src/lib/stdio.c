@@ -4,6 +4,31 @@
 
 #include <lib/stdio.h>
 
+void print_character(const char character)
+{
+    size_t cursor_pos = get_cursor_pos();
+
+	if (cursor_pos >= VGA_WIDTH * VGA_HEIGHT) {
+		scroll();
+        cursor_pos = get_cursor_pos();
+	}
+
+	if (character == '\b') {
+		if (cursor_pos > 0) {
+			move_cursor(-1);
+            cursor_pos = get_cursor_pos();
+			write_cell(cursor_pos / VGA_WIDTH,
+				   cursor_pos % VGA_WIDTH, ' ', get_color());
+		}
+	} else if (character == '\n') {
+		new_line();
+	} else {
+		write_cell(cursor_pos / VGA_WIDTH, cursor_pos % VGA_WIDTH,
+			   character, get_color());
+		move_cursor(1);
+	}
+}
+
 void print_string(const char *string)
 {
 	size_t i;
