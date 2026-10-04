@@ -10,7 +10,7 @@ static void cmd_help(char *args)
 	(void)args;
 
 	print_string("help\nclear\nhalt\ncolor\npeek\n"
-		"dump\ncursor\nrandom\npoke\nblink\nbeep\nvi");
+		"dump\ncursor\nrandom\npoke\nblink\nbeep");
 }
 
 static void cmd_clear(char *args)
@@ -179,13 +179,6 @@ static void cmd_beep(char *args)
     pc_speaker_beep(freq, dur);
 }
 
-static void cmd_vi(char *args)
-{
-	(void)args;
-
-	vi_run();
-}
-
 struct shell_command {
 	const char *name;
 	void (*handler)(char *args);
@@ -203,7 +196,6 @@ static const struct shell_command commands[] = {
 	{ "poke", cmd_poke },
 	{ "blink", cmd_blink },
 	{ "beep", cmd_beep },
-	{ "vi", cmd_vi}
 };
 
 #define COMMAND_COUNT (sizeof(commands) / sizeof(commands[0]))
