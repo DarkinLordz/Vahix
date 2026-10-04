@@ -14,7 +14,6 @@
 #include "lib/string.h"
 #include "lib/stdio.h"
 #include "drivers/sound.h"
-#include "shell/vi.h"
 
 void shell(void);
 
