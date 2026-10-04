@@ -7,4 +7,7 @@
 #include <stdint.h>
 #include <stddef.h>
 
+void bump_init(BumpAllocator *allocator, uint32_t heap_start, uint32_t heap_end);
+uint8_t *alloc(BumpAllocator *allocator, size_t size);
+
 #endif /* VAHIX_ALLOCATOR_H */
