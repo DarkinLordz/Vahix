@@ -1,7 +1,5 @@
 # Vahix
 
-<!-- SPDX-License-Identifier: GPL-2.0-only -->
-
 ![Example](docs/image.png)
 
 ## Vahix is an experimental kernel.

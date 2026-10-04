@@ -1,6 +1,3 @@
-/* SPDX-License-Identifier: GPL-2.0-only */
-/* Copyright (C) 2026 Vahid Khalafov */
-
 #include "drivers/vga.h"
 
 static volatile uint16_t *const vga_buffer = (uint16_t *)0xb8000;
@@ -91,6 +88,7 @@ void clear(void)
 	cursor_pos = 0;
 	update_hardware_cursor();
 }
+
 void change_cursor(const char cursor_shape)
 {
 	char cursor_start;
@@ -105,6 +103,8 @@ void change_cursor(const char cursor_shape)
 	outb(0x3d4, 0x0b);
 	outb(0x3d5, (inb(0x3d5) & 0xe0) | cursor_end);
 }
-size_t get_cursor_pos(void) {
+
+size_t get_cursor_pos(void)
+{
 	return cursor_pos;
 }

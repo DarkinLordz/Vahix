@@ -1,6 +1,3 @@
-/* SPDX-License-Identifier: GPL-2.0-only */
-/* Copyright (C) 2026 Vahid Khalafov */
-
 #include "lib/string.h"
 
 int strcmp(const char *s1, const char *s2)

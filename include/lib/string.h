@@ -1,6 +1,3 @@
-/* SPDX-License-Identifier: GPL-2.0-only */
-/* Copyright (C) 2026 Vahid Khalafov */
-
 #ifndef VAHIX_STRING_H
 #define VAHIX_STRING_H
 
@@ -17,4 +14,4 @@ void itoa(int n, char *str);
 void reverse(char *str, int length);
 int atoi(const char *nptr);
 
-#endif /* VAHIX_STRING_H */
+#endif

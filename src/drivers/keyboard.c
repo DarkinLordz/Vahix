@@ -1,6 +1,3 @@
-/* SPDX-License-Identifier: GPL-2.0-only */
-/* Copyright (C) 2026 Vahid Khalafov */
-
 #include "drivers/keyboard.h"
 
 #define KEYBOARD_DATA_PORT		0x60

@@ -1,6 +1,3 @@
-/* SPDX-License-Identifier: GPL-2.0-only */
-/* Copyright (C) 2026 Vahid Khalafov */
-
 #ifndef VAHIX_SHELL_H
 #define VAHIX_SHELL_H
 
@@ -17,4 +14,4 @@
 
 void shell(void);
 
-#endif /* VAHIX_SHELL_H */
+#endif

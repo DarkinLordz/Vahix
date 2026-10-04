@@ -1,6 +1,3 @@
-/* SPDX-License-Identifier: GPL-2.0-only */
-/* Copyright (C) 2026 Vahid Khalafov */
-
 #ifndef VAHIX_VGA_H
 #define VAHIX_VGA_H
 
@@ -25,4 +22,4 @@ void blink(bool state);
 void write_cell(size_t row, size_t col, char character, uint8_t color);
 size_t get_cursor_pos(void);
 
-#endif /* VAHIX_VGA_H */
+#endif

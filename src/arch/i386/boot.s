@@ -1,6 +1,3 @@
-/* SPDX-License-Identifier: GPL-2.0-only */
-/* Copyright (C) 2026 Vahid Khalafov */
-
 .set ALIGN,	1 << 0
 .set MEMINFO,	1 << 1
 .set FLAGS,	ALIGN | MEMINFO

@@ -1,6 +1,3 @@
-/* SPDX-License-Identifier: GPL-2.0-only */
-/* Copyright (C) 2026 Vahid Khalafov */
-
 #ifndef VAHIX_KEYBOARD_H
 #define VAHIX_KEYBOARD_H
 
@@ -18,4 +15,4 @@ void keyboard_init(void);
 int keyboard_poll_char(uint8_t *out);
 uint8_t keyboard_raw_read(void);
 
-#endif /* VAHIX_KEYBOARD_H */
+#endif
