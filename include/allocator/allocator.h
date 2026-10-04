@@ -5,5 +5,6 @@
 #define VAHIX_ALLOCATOR_H
 
 #include <stdint.h>
+#include <stddef.h>
 
 #endif /* VAHIX_ALLOCATOR_H */
