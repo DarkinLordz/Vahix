@@ -3,12 +3,6 @@
 
 #include "allocator/allocator.h"
 
-typedef struct {
-    uint32_t heap_start;
-    uint32_t heap_end;
-    uint32_t next;
-} BumpAllocator;
-
 void bump_init(BumpAllocator *allocator, uint32_t heap_start, uint32_t heap_end) {
     allocator->heap_start = heap_start;
     allocator->heap_end = heap_end;
