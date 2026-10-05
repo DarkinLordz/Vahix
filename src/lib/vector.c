@@ -66,3 +66,8 @@ int vector_get(const Vector *vec, size_t index, Value *out)
     *out = vec->data[index];
     return 1; // success
 }
+
+void vector_clear(Vector *vec)
+{
+    vec->length = 0;
+}
