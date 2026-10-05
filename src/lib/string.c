@@ -111,13 +111,13 @@ int atoi(const char *nptr)
 	return value;
 }
 
-void grow_string(String *str)
+int grow_string(String *str)
 {
 	size_t new_capacity = (str->capacity == 0) ? 8 : str->capacity * 2;
 	uint8_t *new_data = alloc(&allocator, new_capacity);
 
 	if (new_data == NULL) {
-		return; // i might handle this better later
+		return 0; // allocation failed
 	}
 
 	if (str->length > 0) {
@@ -128,24 +128,31 @@ void grow_string(String *str)
 
 	str->data = (char *)new_data;
 	str->capacity = new_capacity;
+	return 1; // success
 }
 
-void push(String *str, char c)
+int push(String *str, char c)
 {
 	if (str->length + 1 >= str->capacity) {
-		grow_string(str);
+		if (!grow_string(str)) {
+			return 0; // failed to grow string
+		}
 	}
 
 	str->data[str->length] = c;
 	str->data[str->length + 1] = '\0';
 	str->length++;
+	return 1; // success
 }
 
-void push_str(String *str, const char *s)
+int push_str(String *str, const char *s)
 {
 	for (size_t i = 0; s[i] != '\0'; i++) {
-		push(str, s[i]);
+		if (!push(str, s[i])) {
+			return 0; // failed to push character
+		}
 	}
+	return 1; // success
 }
 
 String new_string(void)
