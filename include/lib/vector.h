@@ -33,5 +33,6 @@ void push_vector(Vector *vec, Value val);
 Vector new_vector(void);
 void vector_reserve(Vector *vec, size_t new_capacity);
 int vector_pop(Vector *vec, Value *out);
+int vector_get(const Vector *vec, size_t index, Value *out);
 
 #endif

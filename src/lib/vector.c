@@ -56,3 +56,13 @@ int vector_pop(Vector *vec, Value *out)
     *out = vec->data[--vec->length];
     return 1; // success
 }
+
+int vector_get(const Vector *vec, size_t index, Value *out)
+{
+    if (index >= vec->length) {
+        return 0; // index out of bounds
+    }
+
+    *out = vec->data[index];
+    return 1; // success
+}
