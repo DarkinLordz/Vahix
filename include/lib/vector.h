@@ -7,6 +7,7 @@
 
 typedef enum {
     VALUE_INT,
+    VALUE_FLOAT,
     VALUE_CHAR,
     VALUE_STRING,
 } ValueType;
@@ -15,6 +16,7 @@ typedef struct {
     ValueType type;
     union {
         int integer;
+        float floating;
         char character;
         const char *string;
     } as;

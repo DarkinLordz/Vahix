@@ -192,7 +192,7 @@ static const struct shell_command commands[] = {
 	{ "random", cmd_random },
 	{ "poke", cmd_poke },
 	{ "blink", cmd_blink },
-	{ "beep", cmd_beep },
+	{ "beep", cmd_beep }
 };
 
 #define COMMAND_COUNT (sizeof(commands) / sizeof(commands[0]))
