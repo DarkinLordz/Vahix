@@ -26,4 +26,8 @@ typedef struct {
     size_t capacity;
 } Vector;
 
+void grow_vector(Vector *vec);
+void push_vector(Vector *vec, Value val);
+Vector new_vector(void);
+
 #endif

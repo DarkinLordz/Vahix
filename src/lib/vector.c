@@ -18,3 +18,22 @@ void grow_vector(Vector *vec)
     vec->data = new_data;
     vec->capacity = new_capacity;
 }
+
+void push_vector(Vector *vec, Value val)
+{
+    if (vec->length + 1 >= vec->capacity) {
+        grow_vector(vec);
+    }
+
+    vec->data[vec->length] = val;
+    vec->length++;
+}
+
+Vector new_vector(void)
+{
+    Vector vec;
+    vec.data = NULL;
+    vec.length = 0;
+    vec.capacity = 0;
+    return vec;
+}
