@@ -46,3 +46,13 @@ void vector_reserve(Vector *vec, size_t new_capacity)
     vec->data = new_data;
     vec->capacity = new_capacity;
 }
+
+int vector_pop(Vector *vec, Value *out)
+{
+    if (vec->length == 0) {
+        return 0; // vector is empty
+    }
+
+    *out = vec->data[--vec->length];
+    return 1; // success
+}
