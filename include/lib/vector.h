@@ -1,0 +1,29 @@
+#ifndef VAHIX_VECTOR_H
+#define VAHIX_VECTOR_H
+
+#include <stddef.h>
+#include <stdint.h>
+#include "lib/allocator.h"
+
+typedef enum {
+    VALUE_INT,
+    VALUE_CHAR,
+    VALUE_STRING,
+} ValueType;
+
+typedef struct {
+    ValueType type;
+    union {
+        int integer;
+        char character;
+        const char *string;
+    } as;
+} Value;
+
+typedef struct {
+    Value *data;
+    size_t length;
+    size_t capacity;
+} Vector;
+
+#endif
