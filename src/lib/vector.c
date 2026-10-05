@@ -3,25 +3,12 @@
 void grow_vector(Vector *vec)
 {
     size_t new_capacity = (vec->capacity == 0) ? 8 : vec->capacity * 2;
-    Value *new_data = (Value *)alloc(&allocator, new_capacity * sizeof(Value));
-
-    if (new_data == NULL) {
-        return; // best error handling method trust
-    }
-
-    if (vec->length > 0) {
-        for (size_t i = 0; i < vec->length; i++) {
-            new_data[i] = vec->data[i];
-        }
-    }
-    
-    vec->data = new_data;
-    vec->capacity = new_capacity;
+    vector_reserve(vec, new_capacity);
 }
 
 void push_vector(Vector *vec, Value val)
 {
-    if (vec->length + 1 >= vec->capacity) {
+    if (vec->length == vec->capacity) {
         grow_vector(vec);
     }
 
@@ -36,4 +23,26 @@ Vector new_vector(void)
     vec.length = 0;
     vec.capacity = 0;
     return vec;
+}
+
+void vector_reserve(Vector *vec, size_t new_capacity)
+{
+    if (new_capacity <= vec->capacity) {
+        return; // no need to reserve if the new capacity is less than or equal to current capacity
+    }
+
+    Value *new_data = (Value *)alloc(&allocator, new_capacity * sizeof(Value));
+
+    if (new_data == NULL) {
+        return; // best error handling method trust
+    }
+
+    if (vec->length > 0) {
+        for (size_t i = 0; i < vec->length; i++) {
+            new_data[i] = vec->data[i];
+        }
+    }
+
+    vec->data = new_data;
+    vec->capacity = new_capacity;
 }

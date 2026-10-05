@@ -31,5 +31,6 @@ typedef struct {
 void grow_vector(Vector *vec);
 void push_vector(Vector *vec, Value val);
 Vector new_vector(void);
+void vector_reserve(Vector *vec, size_t new_capacity);
 
 #endif
