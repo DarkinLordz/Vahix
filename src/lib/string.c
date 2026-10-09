@@ -32,6 +32,16 @@ int strncmp(const char *s1, const char *s2, size_t n)
 	return *(const unsigned char *)s1 - *(const unsigned char *)s2;
 }
 
+char *strcpy(char *dest, const char *src)
+{
+	char *result = dest;
+
+	while ((*dest++ = *src++) != '\0') {
+	}
+
+	return result;
+}
+
 uint32_t string_to_hex(char *str)
 {
 	uint32_t val = 0;
