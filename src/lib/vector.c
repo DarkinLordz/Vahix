@@ -34,7 +34,7 @@ int vector_reserve(Vector *vec, size_t new_capacity)
         return 1; // no need to reserve if the new capacity is less than or equal to current capacity
     }
 
-    Value *new_data = (Value *)alloc(&allocator, new_capacity * sizeof(Value));
+    Value *new_data = alloc(&allocator, new_capacity * sizeof(Value));
 
     if (new_data == NULL) {
         return 0;
