@@ -1,77 +1,79 @@
 #include "lib/vector.h"
 
-int grow_vector(Vector *vec)
+Vec vec_new(size_t elem_size)
 {
-    size_t new_capacity = (vec->capacity == 0) ? 8 : vec->capacity * 2;
-    return vector_reserve(vec, new_capacity);
+  Vec vec;
+  vec.data = NULL;
+  vec.length = 0;
+  vec.capacity = 0;
+  vec.elem_size = elem_size;
+  return vec;
 }
 
-int push_vector(Vector *vec, Value val)
+int vec_grow(Vec *vec)
 {
-    if (vec->length == vec->capacity) {
-        if (!grow_vector(vec)) {
-            return 0; // failed to grow vector
-        }
-    }
+  size_t new_capacity = (vec->capacity == 0) ? 8 : vec->capacity * 2;
+  void *new_data = alloc(&allocator, new_capacity * vec->elem_size);
 
-    vec->data[vec->length] = val;
-    vec->length++;
-    return 1; // success
+  if (new_data == NULL) {
+    return 1;
+  }
+
+  uint8_t *dst = new_data;
+  uint8_t *src = vec->data;
+  
+  if (vec->length > 0) {
+    for (size_t i = 0; i < vec->length * vec->elem_size; i++) {
+      dst[i] = src[i];
+    }
+  }
+
+  vec->data = new_data;
+  vec->capacity = new_capacity;
+
+  return 0;
 }
 
-Vector new_vector(void)
+int vec_push(Vec *vec, void *value)
 {
-    Vector vec;
-    vec.data = NULL;
-    vec.length = 0;
-    vec.capacity = 0;
-    return vec;
+  if (vec->length >= vec->capacity) {
+    if (vec_grow(vec)) {
+      return 1;
+    }
+  }
+
+  uint8_t *dst = (uint8_t *)vec->data + vec->length * vec->elem_size;
+  uint8_t *src = value;
+
+  for (size_t i = 0; i < vec->elem_size; i++) {
+    dst[i] = src[i];
+  }
+  
+  vec->length++;
+
+  return 0;
 }
 
-int vector_reserve(Vector *vec, size_t new_capacity)
+void *vec_pop(Vec *vec)
 {
-    if (new_capacity <= vec->capacity) {
-        return 1; // no need to reserve if the new capacity is less than or equal to current capacity
-    }
+  if (vec->data == NULL || vec->length == 0) {
+    return NULL;
+  }
 
-    Value *new_data = alloc(&allocator, new_capacity * sizeof(Value));
-
-    if (new_data == NULL) {
-        return 0;
-    }
-
-    if (vec->length > 0) {
-        for (size_t i = 0; i < vec->length; i++) {
-            new_data[i] = vec->data[i];
-        }
-    }
-
-    vec->data = new_data;
-    vec->capacity = new_capacity;
-    return 1; // success
+  vec->length--;
+  return (uint8_t *)vec->data + vec->length * vec->elem_size;
 }
 
-int vector_pop(Vector *vec, Value *out)
+void *vec_at(Vec *vec, size_t index)
 {
-    if (vec->length == 0) {
-        return 0; // vector is empty
-    }
+  if (vec->data == NULL || index >= vec->length) {
+    return NULL;
+  }
 
-    *out = vec->data[--vec->length];
-    return 1; // success
+  return (uint8_t *)vec->data + index * vec->elem_size;
 }
 
-int vector_get(const Vector *vec, size_t index, Value *out)
+void vec_reset(Vec *vec)
 {
-    if (index >= vec->length) {
-        return 0; // index out of bounds
-    }
-
-    *out = vec->data[index];
-    return 1; // success
-}
-
-void vector_clear(Vector *vec)
-{
-    vec->length = 0;
+  vec->length = 0;
 }
