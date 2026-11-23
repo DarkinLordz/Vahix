@@ -121,55 +121,50 @@ int atoi(const char *nptr)
 	return value;
 }
 
-int grow_string(String *str)
+String string_new(void)
 {
-	size_t new_capacity = (str->capacity == 0) ? 8 : str->capacity * 2;
-	uint8_t *new_data = alloc(&allocator, new_capacity);
-
-	if (new_data == NULL) {
-		return 0; // allocation failed
-	}
-
-	if (str->length > 0) {
-		for (size_t i = 0; i < str->length; i++) {
-			new_data[i] = str->data[i];
-		}
-	}
-
-	str->data = (char *)new_data;
-	str->capacity = new_capacity;
-	return 1; // success
+	String str;
+	str.data = vec_new(sizeof(char));
+	return str;
 }
 
-int push(String *str, char c)
+int string_push(String *str, char c)
 {
-	if (str->length + 1 >= str->capacity) {
-		if (!grow_string(str)) {
-			return 0; // failed to grow string
-		}
+	if (!vec_push(&str->data, &(char){c})) {
+		return 1; // failed to push character
 	}
-
-	str->data[str->length] = c;
-	str->data[str->length + 1] = '\0';
-	str->length++;
-	return 1; // success
+	return 0; // success
 }
 
-int push_str(String *str, const char *s)
+int string_push_str(String *str, const char *s)
 {
 	for (size_t i = 0; s[i] != '\0'; i++) {
-		if (!push(str, s[i])) {
+		if (!string_push(str, s[i])) {
 			return 0; // failed to push character
 		}
 	}
 	return 1; // success
 }
 
-String new_string(void)
+char *string_c_str(String *str)
 {
-	String str;
-	str.data = NULL;
-	str.length = 0;
-	str.capacity = 0;
-	return str;
+	char *c_str = alloc(&allocator, str->data.length + 1);
+	if (c_str == NULL) {
+		return NULL; // allocation failed
+	}
+
+	for (size_t i = 0; i < str->data.length; i++) {
+		c_str[i] = *(char *)vec_at(&str->data, i);
+	}
+
+	c_str[str->data.length] = '\0';
+	return c_str;
+}
+
+char string_at(String *str, size_t i)
+{
+	if (i >= str->data.length) {
+		return '\0'; // index out of bounds
+	}
+	return *(char *)vec_at(&str->data, i);
 }
