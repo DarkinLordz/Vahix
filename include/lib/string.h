@@ -6,11 +6,10 @@
 
 #include "drivers/vga.h"
 #include "lib/allocator.h"
+#include "lib/vector.h"
 
 typedef struct {
-    char *data;
-    size_t length;
-    size_t capacity;
+    Vec data;
 } String;
 
 int strcmp(const char *s1, const char *s2);
@@ -21,9 +20,10 @@ uint32_t string_to_hex(char *str);
 void itoa(int n, char *str);
 void reverse(char *str, int length);
 int atoi(const char *nptr);
-int grow_string(String *str);
-int push(String *str, char c);
-int push_str(String *str, const char *s);
-String new_string(void);
+String string_new(void);
+int string_push(String *str, char c);
+int string_push_str(String *str, const char *s);
+char *string_c_str(String *str);
+char string_at(String *str, size_t i);
 
 #endif
